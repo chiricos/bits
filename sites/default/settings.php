@@ -796,4 +796,5 @@ $databases['default']['default'] = array (
   'driver' => 'mysql',
 );
 $settings['install_profile'] = 'standard';
+$settings['update_free_access'] =true;
 $config_directories['sync'] = 'sites/default/files/config_HYQu69sXghMo7FvsZi9_gcN5udLaod8ySHNrLiF9o38XNhUWy4LcGf7nO7G8Ps6f7mm6qCdJjA/sync';
