@@ -1,0 +1,6 @@
+hello_word:
+  path: /hello/word
+  defaults:
+    _controller: Drupal\hello_word\Controller\HelloWordController::hello
+  requirements:
+    _permission: 'access content'

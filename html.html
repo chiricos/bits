@@ -1,0 +1,62 @@
+<form >
+	<div class="form-group">
+	  <label for="sel1">Select list:</label>
+	  <select class="form-control" id="sel1">
+	    <option>1</option>
+	    <option>2</option>
+	    <option>3</option>
+	    <option>4</option>
+	  </select>
+	</div>
+</form>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#RespuestaModal').html('<li class="list-group-item">Seleccione una ciudad</li>');
+		$('.ciudad').change(function(){
+			if($('.base').val()=="" || $('.appid').val()=="" || $('.units').val()==""){
+			alert('Llene los datos de configuración');
+			}else{
+				$('#RespuestaModal').html('<li class="list-group-item">Procesando...</li>');
+			    url =  $('.base').val()+"?q="+$(this).val()+"&appid="+ $('.appid').val()+"&units="+$('.units').val();
+			    $.get(url,function(result){
+
+			        if(result.length == 0){
+			            $('.list-group').html('<li class="list-group-item">Ocurrió un problema ...</li>');
+			        }
+			        else{
+						$('.list-group').html('<li class="list-group-item">Ciudad: '+result.name+'</li><li class="list-group-item">Temperatura: '+result.main.temp+'</li><li class="list-group-item">Presión: '+result.main.pressure+'</li><li class="list-group-item">Humedad: '+result.main.humidity+'</li><li class="list-group-item">Temperatura Min: '+result.main.temp_min+'</li><li class="list-group-item">Temperatura Max: '+result.main.temp_max+'</li>');
+			        }
+
+			        }).fail(function(){
+			            $('.list-group').html('<li class="list-group-item">Ocurrió un problema ...</li>');
+				});	
+			}
+		});
+	});
+</script>
+
+<div class="breadcrumb">
+	<div class="text-center"><h3>Configuraciones</h3></div>
+	<div class="row">
+		
+		<div class="col">
+			<div class="form-group">
+			  <label for="base">Base endpoint:</label>
+			  <input type="text" class="form-control base" id="base" value="http://api.openweathermap.org/data/2.5/weather">
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+			  <label for="appid">Appid:</label>
+			  <input type="text" class="form-control appid" id="appid" value="86723fd6d8b585f6ec7ab1a329dc6622">
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+			  <label for="units">Units:</label>
+			  <input type="text" class="form-control units" id="units" value="metric">
+			</div>
+		</div>
+	</div>
+</div>

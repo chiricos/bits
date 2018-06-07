@@ -1,0 +1,5 @@
+name: Hello word
+type: module
+description: Say Hello word
+package: Custom
+core: 8.x
